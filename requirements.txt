@@ -52,3 +52,4 @@ tzdata==2025.2
 urllib3==2.2.0
 webdriver-manager==4.0.2
 wsproto==1.2.0
+gunicorn==21.2.0
