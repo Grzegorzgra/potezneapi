@@ -1,0 +1,1 @@
+web: gunicorn ToDoLista.wsgi:application
