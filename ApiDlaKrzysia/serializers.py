@@ -4,4 +4,4 @@ from .models import ListaZadan
 class ListaZadanSerializer(serializers.ModelSerializer):
     class Meta:
         model = ListaZadan
-        fields = ['id', "added", 'task', 'description']
+        fields = ['id', "added", 'task', 'description', 'isCompleted' ,'expirationDate','status']
