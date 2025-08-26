@@ -55,3 +55,20 @@ class ListaZadanDetail(APIView):
             return Response(status=status.HTTP_404_NOT_FOUND)
         zadanie.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
+class ListaZadanStatus(APIView):
+    def getObject(self, pk):
+        try:
+            return ListaZadan.objects.get(pk=pk)
+        except ListaZadan.DoesNotExist:
+            return None
+    
+    def put(self, request, pk):
+        zadanie = self.getObject(pk)
+        if not zadanie:
+            return Response({"error": "Nie ma"}, status=status.HTTP_404_NOT_FOUND)
+        serializer = ListaZadanSerializer(zadanie, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
